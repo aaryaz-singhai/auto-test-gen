@@ -1,9 +1,9 @@
 import subprocess
 import re
 
-def get_git_diff():
+def get_git_diff(SOURCE_FILE):
     result = subprocess.run(
-        ["git", "diff", "--unified=0", "HEAD~1"],
+        ["git", "diff", "--unified=0", "HEAD~1", "--", SOURCE_FILE],
         capture_output=True,
         text=True
     )

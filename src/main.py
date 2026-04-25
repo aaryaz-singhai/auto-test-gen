@@ -20,7 +20,7 @@ def save_test_file(function_name, test_code):
 
 def main():
     print("🔍 Detecting changes...")
-    diff = get_git_diff()
+    diff = get_git_diff(SOURCE_FILE)
     functions = extract_changed_functions(diff)
 
     if not functions:

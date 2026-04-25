@@ -8,15 +8,14 @@ from groq import Groq
 # --- Clients ---
 openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Gemini (OpenAI-compatible endpoint)
 gemini_client = OpenAI(
     api_key=os.getenv("GEMINI_API_KEY"),
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 
-claude_client = anthropic.Anthropic(
-    api_key=os.getenv("ANTHROPIC_API_KEY")
-)
+# claude_client = anthropic.Anthropic(
+#     api_key=os.getenv("ANTHROPIC_API_KEY")
+# )
 
 groq_client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
@@ -49,7 +48,7 @@ def call_claude(prompt):
 # --- Groq caller ---
 def call_groq(prompt):
     response = groq_client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.2,
     )
@@ -81,7 +80,7 @@ Context:
         ("OpenAI", lambda: call_openai_like(openai_client, "gpt-4o-mini", prompt)),
         ("Gemini", lambda: call_openai_like(gemini_client, "gemini-2.0-flash", prompt)),
         ("Groq", lambda: call_groq(prompt)),
-        ("Claude", lambda: call_claude(prompt)),
+        # ("Claude", lambda: call_claude(prompt)),
     ]
 
     last_error = None
