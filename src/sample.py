@@ -10,11 +10,13 @@ def divide(a, b):
 def multiply(a,b):
 	return a*b
 
-def subtraction(a,b):
-	return a*b
+
 
 def even_odd(a):
       if a%2 == 0:
             return "number is even"
       else:
             return "number is odd"
+      
+def subtraction(a,b):
+     return a-b

@@ -1,8 +1,13 @@
 import subprocess
 
-def run_tests():
+def run_tests(test_file=None):
+    cmd = ["pytest", "--maxfail=1", "--disable-warnings"]
+
+    if test_file:
+        cmd.append(test_file)
+
     result = subprocess.run(
-        ["pytest", "--maxfail=1", "--disable-warnings"],
+        cmd,
         capture_output=True,
         text=True
     )
