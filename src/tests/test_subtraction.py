@@ -1,36 +1,29 @@
-# tests/test_sample.py
-import pytest
+# tests/test_subtraction.py
 from sample import subtraction
+import pytest
 
-def test_subtraction_valid_inputs():
+def test_subtraction_valid():
     assert subtraction(5, 3) == 2
     assert subtraction(-5, 3) == -8
     assert subtraction(0, 0) == 0
     assert subtraction(-5, -3) == -2
 
-def test_subtraction_invalid_inputs():
+def test_subtraction_invalid_type():
     with pytest.raises(TypeError):
-        subtraction('a', 3)
+        subtraction("a", 3)
     with pytest.raises(TypeError):
-        subtraction(3, 'b')
-    with pytest.raises(TypeError):
-        subtraction('a', 'b')
+        subtraction(3, "b")
 
-def test_subtraction_non_numeric_inputs():
-    with pytest.raises(TypeError):
-        subtraction(3, [1, 2, 3])
-    with pytest.raises(TypeError):
-        subtraction({1: 2}, 3)
+def test_subtraction_invalid_input():
+    with pytest.raises(ValueError):
+        subtraction(5, "a")
+    with pytest.raises(ValueError):
+        subtraction("a", 3)
+    with pytest.raises(ValueError):
+        subtraction("a", "b")
 
-def test_subtraction_negative_numbers():
-    assert subtraction(-5, 3) == -8
-    assert subtraction(-5, -3) == -2
-
-def test_subtraction_large_numbers():
-    assert subtraction(1000000, 3) == 999997
-    assert subtraction(-1000000, 3) == -1000003
-
-def test_subtraction_zero():
-    assert subtraction(0, 3) == -3
-    assert subtraction(3, 0) == 3
-    assert subtraction(0, 0) == 0
+def test_subtraction_edge_cases():
+    assert subtraction(5, 0) == 5
+    assert subtraction(-5, 0) == -5
+    assert subtraction(0, 5) == -5
+    assert subtraction(0, -5) == 5

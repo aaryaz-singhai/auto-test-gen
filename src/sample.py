@@ -20,3 +20,7 @@ def even_odd(a):
       
 def subtraction(a,b):
      return a-b
+
+def multiple_of_ten(a):
+	if a%10==0:
+		return "divisible by 10"
